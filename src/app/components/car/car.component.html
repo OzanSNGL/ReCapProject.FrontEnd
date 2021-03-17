@@ -1,0 +1,21 @@
+<h4>ALL CARS</h4>
+<div class="row">
+<div class="card" *ngFor="let car of cars" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{car.carName}}</h5>
+  </div>
+  <ul class="list-group list-group-flush" >
+    <li class="list-group-item">Marka: {{car.brandName}}</li>
+    <li class="list-group-item">{{car.modelYear}} Model</li>
+    <li class="list-group-item">{{car.dailyPrice}} / günlük fiyat</li>
+  </ul>
+  <div class="card-body">
+    <section style="float:left">
+      <button type="button" class="btn btn-primary" routerLink="/cars/cardetail/{{car.carId}}">Details</button>
+    </section>
+    <section style="float:right">
+      <button type="button" class="btn btn-success">Drive Now!</button>
+    </section>
+   </div>
+ </div>
+</div>
