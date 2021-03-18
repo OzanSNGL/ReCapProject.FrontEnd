@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  BaseImgUrl: 'https://localhost:44354/wwwroot'
+  BaseImgUrl: 'https://localhost:44354'
 };
 
 /*

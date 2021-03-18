@@ -18,6 +18,7 @@ export class CarComponent implements OnInit {
   currentCar:Car
   carImages:CarImage[]
   dataLoaded = false;
+  filterText = ""
   imageUrl = environment.BaseImgUrl
 
   constructor(private carService:CarService, private carImageService:CarImageService, private activatedRoute:ActivatedRoute) { }
@@ -29,7 +30,7 @@ export class CarComponent implements OnInit {
       }else if(params["colorId"]){
         this.getCarsByColor(params["colorId"])
       }else{
-        this.getCars()
+        this.getAllCarDetails()
       }
     })
   }
@@ -78,5 +79,11 @@ export class CarComponent implements OnInit {
     this.carImageService.getCarImages(carId).subscribe((response) => {
       this.carImages = response.data;
     });
+  }
+
+  getAllCarDetails(){
+    this.carService.getAllCarDetail().subscribe((response)=>{
+      this.cars = response.data;
+    })
   }
 }
