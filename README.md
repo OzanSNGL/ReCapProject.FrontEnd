@@ -1,5 +1,15 @@
 # Recaprental
 
+This is an ongoing project aimed to simulate a RentACar-like website.
+You can see the backend codes from [ReCapProject.KodlamaIO](https://github.com/OzanSNGL/ReCapProject.KodlamaIO).
+
+While backend is much stronger than the frontend, I'm continuously improving the website's style.
+Any screenshots will be available after the frontend gets more complete.
+
+Thank you for your interest!
+
+## Angular
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.3.
 
 ## Development server
