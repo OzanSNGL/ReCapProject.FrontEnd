@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Brand } from '../models/brand';
 import { Observable } from 'rxjs';
 import { ListResponseModel } from '../models/listResponseModel';
+import { SingleResponseModel } from '../models/singleResponseModel';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +17,8 @@ export class BrandService {
     return this.HttpClient.get<ListResponseModel<Brand>>(newPath)
     }
 
-  getBrandsById(brandId:number):Observable<ListResponseModel<Brand>>{
+  getBrandsById(brandId:number):Observable<SingleResponseModel<Brand>>{
     let newPath = this.apiUrl + "brands/getbrandsbyId?brandId=" + brandId
-    return this.HttpClient.get<ListResponseModel<Brand>>(newPath)
+    return this.HttpClient.get<SingleResponseModel<Brand>>(newPath)
     }
 }

@@ -4,6 +4,8 @@ export interface Rental{
     customerId:number;
     rentDate:Date;
     returnDate:Date;
+    userName:string;
+    rented:boolean;
 }
 
 export interface RentalDetail{

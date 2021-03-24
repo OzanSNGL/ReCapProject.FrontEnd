@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { Brand } from 'src/app/models/brand';
+import { CarImage } from 'src/app/models/carImage';
 import { BrandService } from 'src/app/services/brand.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-brand',
@@ -10,10 +13,20 @@ import { BrandService } from 'src/app/services/brand.service';
 export class BrandComponent implements OnInit {
 
   brands : Brand[]=[];
-  currentBrand:Brand;
-  constructor(private brandService:BrandService) { }
+  carImages:CarImage[]=[]
+  imageUrl = environment.BaseImgUrl;
+  selectedBrand:number;
+  public static currentBrand:Brand | null;
+  constructor(private brandService:BrandService, private router:Router, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.router.events.subscribe(val=>{
+      if(val instanceof NavigationStart){
+        if(val instanceof NavigationStart){
+          this.clearCurrentBrand();
+        }
+      }
+    })
     this.getBrands();
   }
 
@@ -23,12 +36,14 @@ export class BrandComponent implements OnInit {
     })
   }
 
-  setCurrentBrand(brand:Brand){
-    this.currentBrand = brand;
+  setCurrentBrand(brandId:number){
+    this.brandService.getBrandsById(brandId).subscribe(response=>{
+      BrandComponent.currentBrand = response.data;
+    })
   }
 
   getCurrentBrandClass(brand:Brand){
-    if(brand == this.currentBrand){
+    if(brand == BrandComponent.currentBrand){
       return "list-group-item active"
     }else{
       return "list-group-item"
@@ -36,11 +51,15 @@ export class BrandComponent implements OnInit {
   }
 
   getAllBrandClass(){
-    if(!this.currentBrand){
+    if(!BrandComponent.currentBrand){
       return "list-group-item active"
     }else{
       return "list-group-item"
     }
+  }
+
+  clearCurrentBrand(){
+    BrandComponent.currentBrand = null;
   }
 
 }

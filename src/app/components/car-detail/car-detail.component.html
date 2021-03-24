@@ -29,14 +29,11 @@
           </li>
         </ul>
       </div>
-      <div class="card-body">
-        <a
-          routerLink="/cars/rent"
-          class="card-link btn btn-primary"
-          style="align-items: center"
-          >Drive Now!</a
-        >
+      <div *ngFor="let car of cars" class="btn-group" role="group" aria-label="Basic outlined example">
+        <button type="button" class="btn btn-outline-primary" routerLink="/rents/rentdetails/{{car.carId}}">Rent Details</button>
+        <button type="button" class="btn btn-outline-primary" routerLink="/cars/carimage/{{car.carId}}">See Photos</button>
       </div>
+
       <div class="col-md-4"></div>
     </div>
   </div>

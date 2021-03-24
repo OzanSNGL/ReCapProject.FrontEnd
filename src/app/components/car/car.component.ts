@@ -6,6 +6,8 @@ import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { CarImage } from 'src/app/models/carImage';
 import { CarImageService } from 'src/app/services/car-image.service';
+import { ToastrService } from 'ngx-toastr';
+import { Brand } from 'src/app/models/brand';
 
 @Component({
   selector: 'app-car',
@@ -14,14 +16,15 @@ import { CarImageService } from 'src/app/services/car-image.service';
 })
 export class CarComponent implements OnInit {
 
-  cars:Car[]
+  cars:Car[] = []
   currentCar:Car
-  carImages:CarImage[]
+  carImages:CarImage[];
   dataLoaded = false;
   filterText = ""
+  pipeCarName:string | null=null;
   imageUrl = environment.BaseImgUrl
 
-  constructor(private carService:CarService, private carImageService:CarImageService, private activatedRoute:ActivatedRoute) { }
+  constructor(private carService:CarService, private carImageService:CarImageService, private activatedRoute:ActivatedRoute, private toastrService:ToastrService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params=>{
@@ -29,6 +32,8 @@ export class CarComponent implements OnInit {
         this.getCarsByBrand(params["brandId"])
       }else if(params["colorId"]){
         this.getCarsByColor(params["colorId"])
+      }else if(params['carId']){
+        this.getCarDetails(params['carId'])
       }else{
         this.getAllCarDetails()
       }
@@ -85,5 +90,15 @@ export class CarComponent implements OnInit {
     this.carService.getAllCarDetail().subscribe((response)=>{
       this.cars = response.data;
     })
+  }
+
+  getCarDetails(carId:number){
+    this.carService.getCarDetail(carId).subscribe((response) => {
+      this.cars = response.data;
+    })
+  }
+
+  rentNow(car:Car){
+    this.toastrService.success("You can now rent", car.carName)
   }
 }

@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="col-md-4"></div>
+    
+    <div class="col-md-4">
+        <div *ngFor="let rental of rentals" class="row" style="right: 18rem;">
+            <div>
+                <div class="card-title">Rent Details</div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><mark>Rent Date</mark> : {{ rental.rentDate}}</li>
+                <li class="list-group-item"><mark>Return Date</mark> : {{ rental.returnDate }}</li>
+                <li class="list-group-item"><mark>Renter</mark> : {{ rental.userName }} *****</li>
+            </ul>
+            <button *ngIf="rental.rentDate == null" type="button" class="btn btn-info">Available!</button>
+            <button *ngIf="!rental.rentDate == null" type="button" class="btn btn-info">Unavailable.</button>    
+            </div>
+            <div *ngIf="rented==null">
+                The car is available!
+                <button type="button" class="btn btn-info">Rent Now!</button>
+            </div>
+                  
+        </div>
+    </div>
+</div>
