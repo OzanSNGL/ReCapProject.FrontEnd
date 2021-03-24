@@ -1,7 +1,7 @@
 # Recaprental
 
 This is an ongoing project aimed to simulate a RentACar-like website.
-You can see the backend codes from [ReCapProject.KodlamaIO](https://github.com/OzanSNGL/ReCapProject.KodlamaIO)
+You can see the backend codes from [ReCapProject.KodlamaIO](https://github.com/OzanSNGL/ReCapProject.KodlamaIO).
 
 While backend is much stronger than the frontend, I'm continuously improving the website's style.
 Any screenshots will be available after the frontend gets more complete.
